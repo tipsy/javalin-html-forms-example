@@ -1,5 +1,9 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.commons.io.FileUtils;
 
 import io.javalin.Javalin;
 
@@ -24,6 +28,17 @@ public class Main {
 
         app.get("/check-reservation", ctx -> {
             ctx.html(reservations.get(ctx.queryParam("day")));
+        });
+
+        app.post("/upload-example", ctx -> {
+            ctx.uploadedFiles("files").forEach(file -> {
+                try {
+                    FileUtils.copyInputStreamToFile(file.getContent(), new File("upload/" + file.getName()));
+                    ctx.html("Upload successful");
+                } catch (IOException e) {
+                    ctx.html("Upload failed");
+                }
+            });
         });
 
     }
