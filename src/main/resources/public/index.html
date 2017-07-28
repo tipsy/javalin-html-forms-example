@@ -1,0 +1,30 @@
+
+<h1>Reserve a table at our fancy restaurant</h1>
+
+<h2>Make reservation:</h2>
+<form method="post" action="/make-reservation">
+    Choose day
+    <select name="day">
+        <option value="saturday">Saturday</option>
+        <option value="sunday">Sunday</option>
+    </select>
+    <br>
+    Choose time
+    <select name="time">
+        <option value="8:00 PM">8:00 PM</option>
+        <option value="9:00 PM">9:00 PM</option>
+    </select>
+    <br>
+    <button>Submit</button>
+</form>
+
+<h2>Check your reservation:</h2>
+<form method="get" action="/check-reservation">
+    Choose day
+    <select name="day">
+        <option value="saturday">Saturday</option>
+        <option value="sunday">Sunday</option>
+    </select>
+    <br>
+    <button>Submit</button>
+</form>
