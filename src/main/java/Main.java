@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 
 import io.javalin.Javalin;
-import io.javalin.LogLevel;
 
 public class Main {
 
@@ -19,7 +18,6 @@ public class Main {
 
         Javalin app = Javalin.create()
             .port(7777)
-            .requestLogLevel(LogLevel.EXTENSIVE)
             .enableStaticFiles("/public")
             .start();
 
