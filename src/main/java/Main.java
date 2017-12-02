@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
 
         Javalin app = Javalin.create()
-            .port(7777)
+            .port(7070)
             .enableStaticFiles("/public")
             .start();
 

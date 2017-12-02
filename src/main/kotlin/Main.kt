@@ -10,7 +10,7 @@ val reservations = mutableMapOf<String?, String?>(
 fun main(args: Array<String>) {
 
     val app = Javalin.create().apply {
-        port(7777)
+        port(7070)
         enableStaticFiles("/public")
     }.start()
 
