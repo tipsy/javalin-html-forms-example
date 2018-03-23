@@ -22,7 +22,6 @@ public class Main {
             .start();
 
         app.post("/make-reservation", ctx -> {
-            ctx.queryParam("test");
             reservations.put(ctx.formParam("day"), ctx.formParam("time"));
             ctx.html("Your reservation has been saved");
         });
