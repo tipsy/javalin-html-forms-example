@@ -1,11 +1,7 @@
-import java.io.File;
-import java.io.IOException;
+import io.javalin.Javalin;
+import io.javalin.core.util.FileUtil;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.commons.io.FileUtils;
-
-import io.javalin.Javalin;
 
 public class Main {
 
@@ -32,15 +28,13 @@ public class Main {
 
         app.post("/upload-example", ctx -> {
             ctx.uploadedFiles("files").forEach(file -> {
-                try {
-                    FileUtils.copyInputStreamToFile(file.getContent(), new File("upload/" + file.getName()));
-                    ctx.html("Upload successful");
-                } catch (IOException e) {
-                    ctx.html("Upload failed");
-                }
+                FileUtil.streamToFile(file.getContent(), "upload/" + file.getName());
+                ctx.html("Upload successful");
             });
         });
 
     }
 
 }
+
+
