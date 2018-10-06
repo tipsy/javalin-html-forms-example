@@ -1,7 +1,7 @@
 import io.javalin.Javalin
 import io.javalin.core.util.FileUtil
 
-val reservations = mutableMapOf<String?, String?>(
+private val reservations = mutableMapOf<String?, String?>(
         "saturday" to "No reservation",
         "sunday" to "No reservation"
 )
@@ -9,9 +9,8 @@ val reservations = mutableMapOf<String?, String?>(
 fun main(args: Array<String>) {
 
     val app = Javalin.create().apply {
-        port(7070)
         enableStaticFiles("/public")
-    }.start()
+    }.start(7070)
 
     app.post("/make-reservation") { ctx ->
         reservations[ctx.formParam("day")] = ctx.formParam("time")

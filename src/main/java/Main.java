@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Main {
 
-    static Map<String, String> reservations = new HashMap<String, String>() {{
+    private static Map<String, String> reservations = new HashMap<String, String>() {{
         put("saturday", "No reservation");
         put("sunday", "No reservation");
     }};
@@ -13,9 +13,8 @@ public class Main {
     public static void main(String[] args) {
 
         Javalin app = Javalin.create()
-            .port(7070)
             .enableStaticFiles("/public")
-            .start();
+            .start(7070);
 
         app.post("/make-reservation", ctx -> {
             reservations.put(ctx.formParam("day"), ctx.formParam("time"));
