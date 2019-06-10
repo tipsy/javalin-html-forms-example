@@ -12,9 +12,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Javalin app = Javalin.create()
-            .enableStaticFiles("/public")
-            .start(7070);
+        Javalin app = Javalin.create(config -> {
+            config.addStaticFiles("/public");
+        }).start(7070);
 
         app.post("/make-reservation", ctx -> {
             reservations.put(ctx.formParam("day"), ctx.formParam("time"));
@@ -27,7 +27,7 @@ public class Main {
 
         app.post("/upload-example", ctx -> {
             ctx.uploadedFiles("files").forEach(file -> {
-                FileUtil.streamToFile(file.getContent(), "upload/" + file.getName());
+                FileUtil.streamToFile(file.getContent(), "upload/" + file.getFilename());
                 ctx.html("Upload successful");
             });
         });

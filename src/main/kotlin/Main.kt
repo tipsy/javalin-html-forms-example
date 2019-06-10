@@ -8,8 +8,8 @@ private val reservations = mutableMapOf<String?, String?>(
 
 fun main(args: Array<String>) {
 
-    val app = Javalin.create().apply {
-        enableStaticFiles("/public")
+    val app = Javalin.create {
+        it.addStaticFiles("/public")
     }.start(7070)
 
     app.post("/make-reservation") { ctx ->
@@ -22,8 +22,8 @@ fun main(args: Array<String>) {
     }
 
     app.post("/upload-example") { ctx ->
-        ctx.uploadedFiles("files").forEach { (_, content, name) ->
-            FileUtil.streamToFile(content, "upload/$name")
+        ctx.uploadedFiles("files").forEach {
+            FileUtil.streamToFile(it.content, "upload/${it.filename}")
             ctx.html("Upload complete")
         }
     }
