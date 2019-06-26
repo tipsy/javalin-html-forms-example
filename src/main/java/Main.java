@@ -28,8 +28,8 @@ public class Main {
         app.post("/upload-example", ctx -> {
             ctx.uploadedFiles("files").forEach(file -> {
                 FileUtil.streamToFile(file.getContent(), "upload/" + file.getFilename());
-                ctx.html("Upload successful");
             });
+            ctx.html("Upload successful");
         });
 
     }
