@@ -24,8 +24,8 @@ fun main(args: Array<String>) {
     app.post("/upload-example") { ctx ->
         ctx.uploadedFiles("files").forEach {
             FileUtil.streamToFile(it.content, "upload/${it.filename}")
-            ctx.html("Upload complete")
         }
+        ctx.html("Upload complete")
     }
 
 }
