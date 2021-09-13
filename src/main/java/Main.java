@@ -1,5 +1,6 @@
 import io.javalin.Javalin;
 import io.javalin.core.util.FileUtil;
+import io.javalin.http.staticfiles.Location;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
 
         Javalin app = Javalin.create(config -> {
-            config.addStaticFiles("/public");
+            config.addStaticFiles("/public", Location.CLASSPATH);
         }).start(7070);
 
         app.post("/make-reservation", ctx -> {
